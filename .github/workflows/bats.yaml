@@ -19,9 +19,12 @@ jobs:
       - run: npm version
       - run: npm install -g bats
       - run: bats -v
+      - run: sleep 20
   mi-segundo-job: 
     # REQUERIDO - indicamos donde va a correr el job
     runs-on: ubuntu-latest
+    # Indica dependencia este un job con otro
+    needs: mi-primer-job
     # Pasos que se ejcutan en el job
     steps:
       - uses: actions/checkout@v3
