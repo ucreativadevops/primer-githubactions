@@ -1,0 +1,21 @@
+# nombre del workflow
+name: primer-workflow 
+
+# evento que desencadena el workflow
+on: [push] 
+
+# los jobs que se van a ejecutar en el workflow / stages
+jobs:
+  # nombre del job
+  mi-primer-job: 
+    # REQUERIDO - indicamos donde va a correr el job
+    runs-on: ubuntu-latest
+    # Pasos que se ejcutan en el job
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm version
+      - run: npm install -g bats
+      - run: bats -v
